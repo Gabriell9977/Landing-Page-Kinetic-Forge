@@ -1,0 +1,90 @@
+/* Custom Styles & Animation Utilities */
+body {
+    background-color: #0c0c0e;
+    color: #e2e8f0;
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Cursor Glow Spotlight Effect */
+#cursor-glow {
+    pointer-events: none;
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 85, 0, 0.08) 0%, rgba(0, 229, 255, 0.03) 40%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+    z-index: 999;
+    mix-blend-mode: screen;
+}
+
+/* Scroll Reveal Animation Classes */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.watermark-text {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(4rem, 18vw, 18rem);
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.04);
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    user-select: none;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+/* ESTRUCTURA Y CORRECCIÓN DE DESBORDAMIENTOS VISUALES */
+section {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* Transiciones suaves en imágenes y tarjetas */
+.group:hover img {
+    transform: scale(1.05);
+}
+
+/* Recorte de texto para descripciones de tarjetas */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Efecto Glassmorphism para Paneles Editorial */
+.glass-editorial {
+    background: rgba(18, 20, 26, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #08090b; }
+::-webkit-scrollbar-thumb { background: #272a30; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #ff5500; }
+
+/* Ajustes responsivos para pantallas pequeñas */
+@media (max-width: 768px) {
+    #cursor-glow {
+        display: none; /* Desactivar spotlight en móviles para optimizar rendimiento */
+    }
+    .sticky {
+        top: 5rem !important; /* Ajuste de offset para stacked cards en pantallas táctiles */
+    }
+}

@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KINETIC // FORGE | Calzado Táctico y Outdoor de Alta Gama</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts: Syne & Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Configuración Custom de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slateBg: '#0f1115',
+                        slateDark: '#08090b',
+                        slateCard: '#171a20',
+                        accentOrange: '#ff5500',
+                        accentGold: '#d99b26',
+                        accentCyan: '#00e5ff'
+                    },
+                    fontFamily: {
+                        syne: ['Syne', 'sans-serif'],
+                        mono: ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Hojas de estilo personalizadas -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="selection:bg-accentOrange selection:text-black min-h-screen">
+
+    <!-- Cursor Spotlight Element -->
+    <div id="cursor-glow"></div>
+
+    <!-- Barra Superior de Estado -->
+    <div class="border-b border-white/10 bg-black/90 text-[11px] font-mono tracking-widest uppercase text-zinc-400 py-2.5 px-6 flex justify-between items-center z-50 relative">
+        <div class="flex items-center gap-3">
+            <span class="inline-block w-2 h-2 rounded-full bg-accentOrange animate-pulse"></span>
+            <span>SISTEMA TITAN & CO. // TIENDA OFICIAL</span>
+        </div>
+        <div class="hidden sm:flex gap-6 text-[10px]">
+            <span>ENVÍO GRATIS EN PEDIDOS SUPERIORES A $120</span>
+            <span>30 DÍAS PARA CAMBIO DE TALLA SIN COSTO</span>
+        </div>
+        <div>
+            <span class="text-white font-bold">USD ($) / ESPAÑOL</span>
+        </div>
+    </div>
+
+    <!-- NAVBAR PRINCIPAL -->
+    <header class="sticky top-0 z-40 bg-slateBg/95 backdrop-blur-xl border-b border-white/10">
+        <div class="max-w-[1700px] mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <span class="font-syne font-extrabold text-2xl tracking-tighter text-white group-hover:text-accentOrange transition-colors">
+                    TITAN <span class="text-zinc-500 font-light">& CO. // KINETIC</span>
+                </span>
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-8 text-xs font-mono tracking-wider text-zinc-300">
+                <a href="#destacado" class="hover:text-accentOrange border-b-2 border-accentOrange pb-1 transition-all">Modelo Destacado</a>
+                <a href="#tecnologia" class="hover:text-accentOrange pb-1 transition-all">Tecnología (Stacked)</a>
+                <a href="#tallas" class="hover:text-accentOrange pb-1 transition-all">Disponibilidad</a>
+                <a href="#catalogo" class="hover:text-accentOrange pb-1 transition-all">Catálogo Moderno</a>
+                <a href="#faq" class="hover:text-accentOrange pb-1 transition-all">FAQ</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button onclick="openSizeGuide()" class="hidden sm:flex items-center gap-2 border border-white/20 hover:border-accentOrange text-zinc-300 hover:text-white px-3 py-2 text-xs font-mono transition-colors">
+                    <i data-lucide="ruler" class="w-4 h-4 text-accentOrange"></i>
+                    <span>Calculadora de Talla</span>
+                </button>
+
+                <button onclick="toggleCart()" class="relative p-2.5 text-zinc-300 hover:text-white border border-white/10 hover:border-white/30 transition-colors bg-slateCard">
+                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                    <span id="cart-badge" class="absolute -top-1.5 -right-1.5 bg-accentOrange text-black text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </button>
+
+                <a href="#catalogo" class="border border-white/30 hover:border-accentOrange hover:bg-accentOrange hover:text-black transition-all px-5 py-2.5 text-xs font-mono tracking-widest text-white uppercase font-bold">
+                    Ver Catálogo
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION CON HOTSPOTS DINÁMICOS -->
+    <section id="destacado" class="relative min-h-[calc(100vh-100px)] flex flex-col justify-between py-8 px-4 md:px-12 overflow-hidden select-none">
+        <div class="absolute inset-0 bg-gradient-to-b from-slateBg via-[#111318] to-slateDark -z-20"></div>
+
+        <!-- Marca de agua gigante de fondo -->
+        <div class="absolute inset-0 flex items-center justify-center -z-10 overflow-hidden pointer-events-none">
+            <h1 id="hero-watermark" class="watermark-text text-center tracking-tighter">SALOMON</h1>
+        </div>
+
+        <div class="max-w-[1700px] w-full mx-auto flex-1 grid grid-cols-1 lg:grid-cols-12 items-center gap-8 relative z-10 my-auto">
+            <!-- TARJETA EDITORIAL IZQUIERDA -->
+            <div class="lg:col-span-4 flex flex-col items-start justify-center space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-accentOrange/10 border border-accentOrange/30 text-accentOrange text-xs font-mono font-bold tracking-widest uppercase">
+                    <i data-lucide="award" class="w-4 h-4"></i>
+                    <span>EDICIÓN RECOMENDADA 2026</span>
+                </div>
+
+                <div>
+                    <span id="hero-brand" class="text-xs font-mono text-zinc-400 tracking-widest uppercase block">SALOMON ADVANCED LAB</span>
+                    <h2 id="hero-title" class="font-syne font-black text-3xl lg:text-5xl text-white mt-1 uppercase leading-none">
+                        DRX BLISS TRAIL PRO
+                    </h2>
+                </div>
+
+                <div class="border border-white/20 p-6 w-full bg-slateCard/90 backdrop-blur-md relative shadow-2xl space-y-3">
+                    <div class="flex items-baseline gap-3">
+                        <span id="hero-discount" class="font-syne font-extrabold text-4xl lg:text-5xl text-white">30%</span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold text-accentOrange uppercase tracking-wider">Descuento de Temporada</span>
+                            <span id="hero-price" class="text-xl font-bold text-white">$185.00 USD</span>
+                        </div>
+                    </div>
+                    <p id="hero-subtitle" class="text-xs font-mono text-zinc-300 leading-relaxed">
+                        Chasis técnico ultraligero con suela antideslizante, amortiguación reactiva y membrana impermeable para alta montaña.
+                    </p>
+                    <div class="pt-3 border-t border-white/10 flex justify-between items-center text-[11px] font-mono text-zinc-400">
+                        <span>STOCK DISPONIBLE</span>
+                        <span id="hero-stock" class="text-emerald-400 font-bold">14 PARES EN ALMACÉN</span>
+                    </div>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="w-full flex flex-col sm:flex-row gap-3">
+                    <button onclick="addActiveHeroToCart()" class="flex-1 flex items-center justify-center gap-3 px-6 py-4 bg-accentOrange text-black font-mono text-xs font-extrabold uppercase transition-all hover:bg-orange-500 shadow-xl">
+                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                        <span>Añadir al Carrito</span>
+                    </button>
+                    <button onclick="openQuickViewCurrent()" class="px-6 py-4 border border-white/30 hover:border-white text-white font-mono text-xs font-bold uppercase transition-all">
+                        Detalles Rápidos
+                    </button>
+                </div>
+            </div>
+
+            <!-- CENTRO: GALERÍA HD CON HOTSPOTS TÉCNICOS -->
+            <div class="lg:col-span-8 flex flex-col items-center justify-center relative">
+                <div class="relative w-full max-w-[750px] bg-slateCard/60 border border-white/10 p-6 backdrop-blur-md">
+                    <div class="relative aspect-[4/3] w-full flex items-center justify-center overflow-hidden">
+                        <img id="hero-main-img" src="" class="w-full h-full object-contain filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)] transition-all duration-300" alt="Bota Destacada">
+
+                        <!-- HOTSPOT 1: Suela -->
+                        <div class="absolute top-[70%] left-[30%] group z-30">
+                            <button onclick="alert(document.getElementById('hs1-desc').innerText)" class="relative flex h-7 w-7 items-center justify-center">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accentOrange opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-6 w-6 bg-accentOrange text-black text-xs font-bold items-center justify-center shadow-lg">+</span>
+                            </button>
+                            <div class="absolute left-8 bottom-0 hidden group-hover:flex flex-col bg-slateCard border border-white/20 p-3 w-56 text-xs backdrop-blur-md shadow-2xl z-40">
+                                <span id="hs1-title" class="font-bold text-accentOrange uppercase tracking-wider font-mono">SUELA TÉCNICA</span>
+                                <span id="hs1-desc" class="text-zinc-300 text-[11px] mt-1">Cargando datos...</span>
+                            </div>
+                        </div>
+
+                        <!-- HOTSPOT 2: Membrana -->
+                        <div class="absolute top-[35%] left-[60%] group z-30">
+                            <button onclick="alert(document.getElementById('hs2-desc').innerText)" class="relative flex h-7 w-7 items-center justify-center">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accentCyan opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-6 w-6 bg-accentCyan text-black text-xs font-bold items-center justify-center shadow-lg">+</span>
+                            </button>
+                            <div class="absolute left-8 bottom-0 hidden group-hover:flex flex-col bg-slateCard border border-white/20 p-3 w-56 text-xs backdrop-blur-md shadow-2xl z-40">
+                                <span id="hs2-title" class="font-bold text-accentCyan uppercase tracking-wider font-mono">MEMBRANA PRO</span>
+                                <span id="hs2-desc" class="text-zinc-300 text-[11px] mt-1">Cargando datos...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Miniauturas de Ángulo / Vista -->
+                    <div class="mt-4 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-mono text-zinc-400 uppercase">Ángulos disponibles:</span>
+                            <div id="hero-thumbs" class="flex gap-2"></div>
+                        </div>
+
+                        <!-- Switcher de Modelo Hero -->
+                        <div class="flex items-center gap-3">
+                            <button onclick="changeHeroModel(-1)" class="border border-white/20 hover:border-accentOrange px-3 py-1.5 text-xs font-mono text-white uppercase transition-colors flex items-center gap-1">
+                                <i data-lucide="chevron-left" class="w-4 h-4"></i> Anter.
+                            </button>
+                            <span id="hero-counter" class="text-xs font-mono text-zinc-400">1 / 8</span>
+                            <button onclick="changeHeroModel(1)" class="border border-white/20 hover:border-accentOrange px-3 py-1.5 text-xs font-mono text-white uppercase transition-colors flex items-center gap-1">
+                                Siguiente <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BADGES DE CONFIANZA -->
+    <section class="border-y border-white/10 bg-slateDark py-8">
+        <div class="max-w-[1700px] mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-mono text-xs">
+            <div class="flex items-center gap-4 p-4 border border-white/5 bg-slateBg reveal">
+                <div class="p-3 bg-accentOrange/10 text-accentOrange"><i data-lucide="truck" class="w-6 h-6"></i></div>
+                <div>
+                    <h4 class="font-bold text-white uppercase">ENVÍO RÁPIDO ASEGURADO</h4>
+                    <p class="text-zinc-400 text-[11px] mt-0.5">Despacho garantizado en 24-48h con seguimiento.</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 border border-white/5 bg-slateBg reveal">
+                <div class="p-3 bg-accentGold/10 text-accentGold"><i data-lucide="shield-check" class="w-6 h-6"></i></div>
+                <div>
+                    <h4 class="font-bold text-white uppercase">GARANTÍA DE 1 AÑO</h4>
+                    <p class="text-zinc-400 text-[11px] mt-0.5">Cobertura total en materiales y costuras.</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 border border-white/5 bg-slateBg reveal">
+                <div class="p-3 bg-accentCyan/10 text-accentCyan"><i data-lucide="refresh-cw" class="w-6 h-6"></i></div>
+                <div>
+                    <h4 class="font-bold text-white uppercase">CAMBIO DE TALLA GRATIS</h4>
+                    <p class="text-zinc-400 text-[11px] mt-0.5">30 días para probar sin costo adicional.</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 border border-white/5 bg-slateBg reveal">
+                <div class="p-3 bg-emerald-500/10 text-emerald-400"><i data-lucide="lock" class="w-6 h-6"></i></div>
+                <div>
+                    <h4 class="font-bold text-white uppercase">PAGO 100% SEGURO</h4>
+                    <p class="text-zinc-400 text-[11px] mt-0.5">Encriptación SSL con Tarjetas, PayPal y Zelle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN STACKED CARDS (STICKY) -->
+    <section id="tecnologia" class="py-24 bg-slateBg relative border-b border-white/10">
+        <div class="max-w-[1400px] mx-auto px-6 mb-16 reveal">
+            <span class="text-accentOrange font-mono text-xs tracking-widest uppercase">ARQUITECTURA DE RENDIMIENTO</span>
+            <h2 class="font-syne font-extrabold text-3xl md:text-5xl text-white mt-2">PILARES TECNOLÓGICOS</h2>
+            <p class="font-mono text-xs text-zinc-400 mt-2 max-w-xl">Desliza para explorar los componentes de ingeniería avanzada integrados en nuestro calzado técnico.</p>
+        </div>
+
+        <div class="max-w-[1400px] mx-auto px-6 space-y-10">
+            <!-- STACK 1 -->
+            <div class="sticky top-24 z-10 bg-slateDark border border-white/20 p-6 md:p-10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-accentOrange group">
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="flex items-center gap-3">
+                            <span class="font-mono text-xs text-accentOrange font-bold px-3 py-1 bg-accentOrange/10 border border-accentOrange/30">01 // TRACCIÓN EXTREMA</span>
+                            <span class="font-mono text-xs text-zinc-500">VIBRAM® MEGAGRIP</span>
+                        </div>
+                        <h3 class="font-syne font-extrabold text-2xl md:text-4xl text-white uppercase">Adherencia sin precedentes en roca mojada y barro</h3>
+                        <p class="font-mono text-xs text-zinc-300 leading-relaxed">
+                            Diseñadas con compuestos de caucho de alta fricción desarrollados originalmente para escalada profesional. Los tacos autolimpiantes de 5.5mm garantizan frenado impecable en descensos técnicos y estabilidad absoluta en superficies resbaladizas.
+                        </p>
+                        <div class="grid grid-cols-3 gap-4 pt-4 border-t border-white/10 font-mono text-xs">
+                            <div>
+                                <span class="text-accentOrange font-bold block text-lg">+50%</span>
+                                <span class="text-zinc-500 text-[10px]">Durabilidad de suela</span>
+                            </div>
+                            <div>
+                                <span class="text-white font-bold block text-lg">360°</span>
+                                <span class="text-zinc-500 text-[10px]">Tracción multidireccional</span>
+                            </div>
+                            <div>
+                                <span class="text-emerald-400 font-bold block text-lg">Vibram®</span>
+                                <span class="text-zinc-500 text-[10px]">Sello de calidad</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 bg-black/60 p-4 border border-white/10 aspect-[4/3] flex items-center justify-center relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-contain filter group-hover:scale-105 transition-transform duration-500" alt="Vibram Tech">
+                    </div>
+                </div>
+            </div>
+
+            <!-- STACK 2 -->
+            <div class="sticky top-28 z-20 bg-slateDark border border-white/20 p-6 md:p-10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-accentCyan group">
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="flex items-center gap-3">
+                            <span class="font-mono text-xs text-accentCyan font-bold px-3 py-1 bg-accentCyan/10 border border-accentCyan/30">02 // IMPERMEABILIDAD</span>
+                            <span class="font-mono text-xs text-zinc-500">GORE-TEX® SHIELD</span>
+                        </div>
+                        <h3 class="font-syne font-extrabold text-2xl md:text-4xl text-white uppercase">Protección total contra agua manteniendo ventilación</h3>
+                        <p class="font-mono text-xs text-zinc-300 leading-relaxed">
+                            La membrana GORE-TEX integrada bloquea el ingreso de humedad externa mientras permite la evaporación del sudor interno. Tus pies se mantienen secos y frescos durante travesías bajo lluvia torrencial o cruce de arroyos.
+                        </p>
+                        <div class="grid grid-cols-3 gap-4 pt-4 border-t border-white/10 font-mono text-xs">
+                            <div>
+                                <span class="text-accentCyan font-bold block text-lg">28,000mm</span>
+                                <span class="text-zinc-500 text-[10px]">Columna de agua</span>
+                            </div>
+                            <div>
+                                <span class="text-white font-bold block text-lg">100%</span>
+                                <span class="text-zinc-500 text-[10px]">Membrana transpirable</span>
+                            </div>
+                            <div>
+                                <span class="text-emerald-400 font-bold block text-lg">GORE-TEX®</span>
+                                <span class="text-zinc-500 text-[10px]">Garantía oficial</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 bg-black/60 p-4 border border-white/10 aspect-[4/3] flex items-center justify-center relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-contain filter group-hover:scale-105 transition-transform duration-500" alt="Gore-Tex Tech">
+                    </div>
+                </div>
+            </div>
+
+            <!-- STACK 3 -->
+            <div class="sticky top-32 z-30 bg-slateDark border border-white/20 p-6 md:p-10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-accentGold group">
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="flex items-center gap-3">
+                            <span class="font-mono text-xs text-accentGold font-bold px-3 py-1 bg-accentGold/10 border border-accentGold/30">03 // CONFORT ERGONÓMICO</span>
+                            <span class="font-mono text-xs text-zinc-500">AMORTIGUACIÓN REACTIVA</span>
+                        </div>
+                        <h3 class="font-syne font-extrabold text-2xl md:text-4xl text-white uppercase">Retorno de energía superior y absorción de impacto</h3>
+                        <p class="font-mono text-xs text-zinc-300 leading-relaxed">
+                            Entresuela de EVA moldeada de doble densidad combinada con plantillas OrthoLite®. Diseñada para absorber impactos repetitivos en terrenos rocosos, reduciendo la fatiga en rodillas y tobillos durante jornadas superiores a 8 horas.
+                        </p>
+                        <div class="grid grid-cols-3 gap-4 pt-4 border-t border-white/10 font-mono text-xs">
+                            <div>
+                                <span class="text-accentGold font-bold block text-lg">-40%</span>
+                                <span class="text-zinc-500 text-[10px]">Impacto articular</span>
+                            </div>
+                            <div>
+                                <span class="text-white font-bold block text-lg">OrthoLite®</span>
+                                <span class="text-zinc-500 text-[10px]">Plantilla antimicrobiana</span>
+                            </div>
+                            <div>
+                                <span class="text-emerald-400 font-bold block text-lg">24/7</span>
+                                <span class="text-zinc-500 text-[10px]">Confort sin fatiga</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 bg-black/60 p-4 border border-white/10 aspect-[4/3] flex items-center justify-center relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1520639888713-7851133b1ed0?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-contain filter group-hover:scale-105 transition-transform duration-500" alt="Cushion Tech">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DISPONIBILIDAD DE TALLAS Y CALCULADORA -->
+    <section id="tallas" class="py-20 bg-slateBg border-b border-white/10 relative z-40">
+        <div class="max-w-[1700px] mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 border-b border-white/10 pb-6">
+                <div>
+                    <span class="text-accentOrange font-mono text-xs tracking-widest uppercase">GUÍA DE COMPRA</span>
+                    <h2 class="font-syne font-extrabold text-3xl md:text-4xl text-white mt-1">DISPONIBILIDAD DE TALLAS Y ASISTENTE</h2>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-7 bg-slateDark p-6 md:p-8 border border-white/10 space-y-6">
+                    <h3 class="font-syne font-bold text-xl text-white">Comprobar Stock Inmediato por Talla</h3>
+                    <div class="flex flex-wrap gap-2 font-mono text-xs" id="size-availability-selector">
+                        <button onclick="filterByStockSize(this, '39')" class="stock-size-btn border border-white/20 px-4 py-3 text-white font-bold hover:border-accentOrange">EU 39 (US 6.5)</button>
+                        <button onclick="filterByStockSize(this, '40')" class="stock-size-btn border border-white/20 px-4 py-3 text-white font-bold hover:border-accentOrange">EU 40 (US 7.5)</button>
+                        <button onclick="filterByStockSize(this, '41')" class="stock-size-btn border border-accentOrange bg-accentOrange text-black px-4 py-3 font-bold">EU 41 (US 8.5)</button>
+                        <button onclick="filterByStockSize(this, '42')" class="stock-size-btn border border-white/20 px-4 py-3 text-white font-bold hover:border-accentOrange">EU 42 (US 9.0)</button>
+                        <button onclick="filterByStockSize(this, '43')" class="stock-size-btn border border-white/20 px-4 py-3 text-white font-bold hover:border-accentOrange">EU 43 (US 10.0)</button>
+                        <button onclick="filterByStockSize(this, '44')" class="stock-size-btn border border-white/20 px-4 py-3 text-white font-bold hover:border-accentOrange">EU 44 (US 11.0)</button>
+                        <button onclick="filterByStockSize(this, '45')" class="stock-size-btn border border-white/20 px-4 py-3 text-white font-bold hover:border-accentOrange">EU 45 (US 12.0)</button>
+                    </div>
+
+                    <div class="bg-slateBg p-5 border border-white/10 font-mono text-xs space-y-3">
+                        <div class="flex justify-between items-center text-zinc-400 border-b border-white/10 pb-2">
+                            <span>MODELOS EN STOCK PARA <strong id="selected-size-label" class="text-accentOrange">EU 41 (US 8.5)</strong>:</span>
+                            <span id="stock-count-label" class="text-white font-bold">Cargando...</span>
+                        </div>
+                        <div id="size-stock-results" class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2"></div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 bg-slateDark p-6 md:p-8 border border-white/10 space-y-6">
+                    <div>
+                        <span class="text-accentCyan font-mono text-xs font-bold uppercase tracking-widest">¿TIENES DUDAS DE TU TALLA?</span>
+                        <h3 class="font-syne font-bold text-xl text-white mt-1">Calculadora de Pie (en CM)</h3>
+                        <p class="font-mono text-xs text-zinc-400 mt-1">Mide desde tu talón hasta la punta del dedo pulgar y obtén tu número sugerido con margen de confort.</p>
+                    </div>
+
+                    <div class="space-y-4 bg-slateBg p-5 border border-white/10 font-mono text-xs">
+                        <label class="block text-zinc-300">Longitud de tu pie (Centímetros):</label>
+                        <div class="flex gap-2">
+                            <input type="number" id="foot-cm-input-inline" min="20" max="35" step="0.5" placeholder="Ej. 26.5" class="bg-black border border-white/20 text-white px-4 py-3 w-full font-bold focus:border-accentOrange outline-none">
+                            <button onclick="calculateInlineSize()" class="bg-accentOrange text-black font-bold px-6 py-3 uppercase">Calcular</button>
+                        </div>
+                    </div>
+
+                    <div id="inline-size-result" class="p-5 border border-accentOrange bg-accentOrange/10 text-center font-mono">
+                        <span class="text-zinc-400 block text-xs uppercase">TALLA RECOMENDADA REPARTO PERFECTO:</span>
+                        <span id="inline-us-val" class="font-syne font-black text-3xl text-white block my-1">US 9.0</span>
+                        <span id="inline-eu-val" class="text-accentOrange text-xs font-bold">Equivalente a EU 42 (27.0 cm plantilla)</span>
+                    </div>
+
+                    <div class="text-[11px] font-mono text-zinc-500 leading-relaxed">
+                        * Nota: Si planeas usar calcetines térmicos o de lana para alta montaña, te sugerimos elegir media talla por encima de tu resultado.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATÁLOGO GENERAL -->
+    <section id="catalogo" class="py-24 bg-slateDark relative z-40">
+        <div class="max-w-[1700px] mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
+                <div>
+                    <span class="text-accentOrange font-mono text-xs tracking-widest uppercase">COLECCIÓN MULTIMARCA 2026</span>
+                    <h2 class="font-syne font-extrabold text-3xl md:text-5xl text-white mt-1">CATÁLOGO DE BOTAS</h2>
+                </div>
+                <div class="mt-6 md:mt-0 flex flex-wrap gap-2 font-mono text-xs">
+                    <button onclick="filterCatalog('todas', this)" class="cat-filter-btn border border-accentOrange bg-accentOrange text-black px-4 py-2.5 font-bold uppercase">Todas</button>
+                    <button onclick="filterCatalog('tactica', this)" class="cat-filter-btn border border-white/20 text-zinc-300 hover:border-white px-4 py-2.5 font-bold uppercase">Tácticas</button>
+                    <button onclick="filterCatalog('outdoor', this)" class="cat-filter-btn border border-white/20 text-zinc-300 hover:border-white px-4 py-2.5 font-bold uppercase">Outdoor / Senderismo</button>
+                    <button onclick="filterCatalog('urbana', this)" class="cat-filter-btn border border-white/20 text-zinc-300 hover:border-white px-4 py-2.5 font-bold uppercase">Urbana</button>
+                    <button onclick="filterCatalog('cuero', this)" class="cat-filter-btn border border-white/20 text-zinc-300 hover:border-white px-4 py-2.5 font-bold uppercase">Cuero Premium</button>
+                </div>
+            </div>
+
+            <div id="catalog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE PRUEBA SOCIAL Y RESEÑAS DE CLIENTES -->
+    <section class="py-24 bg-slateBg border-t border-white/10 relative z-40">
+        <div class="max-w-[1700px] mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
+                <div>
+                    <span class="text-accentOrange font-mono text-xs tracking-widest uppercase">VALORACIÓN GLOBAL 4.9 / 5.0</span>
+                    <h2 class="font-syne font-extrabold text-3xl md:text-5xl text-white mt-1">LO QUE DICEN NUESTROS CLIENTES</h2>
+                </div>
+                <div class="mt-4 md:mt-0 font-mono text-xs text-zinc-400">
+                    BASADO EN <span class="text-white font-bold">1,450+ RESEÑAS VERIFICADAS</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
+                <!-- Testimonio 1 -->
+                <div class="bg-slateDark border border-white/10 p-6 flex flex-col justify-between space-y-4 hover:border-accentOrange transition-colors">
+                    <div class="space-y-3">
+                        <div class="flex text-accentGold gap-1">★★★★★</div>
+                        <p class="text-zinc-300 text-xs leading-relaxed">
+                            "Compré las Salomon DRX Bliss para una ruta de alta montaña de 3 días en los Andes. El agarre de la suela Vibram es brutal y cero ampollas desde el primer kilómetro. 100% recomendado."
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                        <div>
+                            <span class="font-bold text-white block">Alejandro V.</span>
+                            <span class="text-zinc-500 text-[10px]">Comprador Verificado</span>
+                        </div>
+                        <span class="text-emerald-400 text-[10px]">✓ Modelo DRX Bliss</span>
+                    </div>
+                </div>
+
+                <!-- Testimonio 2 -->
+                <div class="bg-slateDark border border-white/10 p-6 flex flex-col justify-between space-y-4 hover:border-accentOrange transition-colors">
+                    <div class="space-y-3">
+                        <div class="flex text-accentGold gap-1">★★★★★</div>
+                        <p class="text-zinc-300 text-xs leading-relaxed">
+                            "La atención al cliente y el cambio de talla fue rapidísimo. Las Hoka Anacapa son comodísimas para trabajar todo el día de pie y caminar por terrenos difíciles."
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                        <div>
+                            <span class="font-bold text-white block">Mariana G.</span>
+                            <span class="text-zinc-500 text-[10px]">Comprador Verificado</span>
+                        </div>
+                        <span class="text-emerald-400 text-[10px]">✓ Modelo Anacapa 2</span>
+                    </div>
+                </div>
+
+                <!-- Testimonio 3 -->
+                <div class="bg-slateDark border border-white/10 p-6 flex flex-col justify-between space-y-4 hover:border-accentOrange transition-colors">
+                    <div class="space-y-3">
+                        <div class="flex text-accentGold gap-1">★★★★★</div>
+                        <p class="text-zinc-300 text-xs leading-relaxed">
+                            "Calidad de construcción increíble. El cuero de las Timberland Pro se nota que durará años. El envío llegó rapidísimo y el paquete impecable."
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                        <div>
+                            <span class="font-bold text-white block">Gabriel M.</span>
+                            <span class="text-zinc-500 text-[10px]">Comprador Verificado</span>
+                        </div>
+                        <span class="text-emerald-400 text-[10px]">✓ Modelo Premium 6-Inch</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 bg-slateBg border-t border-white/10 relative z-40">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="text-accentOrange font-mono text-xs tracking-widest uppercase">RESOLVEMOS TUS DUDAS</span>
+                <h2 class="font-syne font-extrabold text-3xl text-white mt-1">PREGUNTAS FRECUENTES</h2>
+            </div>
+            <div class="space-y-4 font-mono text-xs">
+                <div class="border border-white/10 bg-slateDark p-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold text-white text-sm">¿Cómo funciona la política de cambio de talla sin costo?</h3>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-accentOrange transition-transform duration-300"></i>
+                    </div>
+                    <p class="text-zinc-400 mt-3 hidden leading-relaxed">
+                        Si al recibir tus botas notas que la talla no te ajusta perfectamente, dispones de 30 días para solicitar el cambio sin cargos de envío adicionales.
+                    </p>
+                </div>
+                <div class="border border-white/10 bg-slateDark p-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold text-white text-sm">¿Las botas de cuero premium son 100% piel genuina?</h3>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-accentOrange transition-transform duration-300"></i>
+                    </div>
+                    <p class="text-zinc-400 mt-3 hidden leading-relaxed">
+                        Sí. Toda nuestra línea de cuero artesanal e industrial utiliza pieles de vacuno tratadas de grado superior con aceites hidrófugos para garantizar durabilidad y resistencia al agua.
+                    </p>
+                </div>
+                <div class="border border-white/10 bg-slateDark p-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold text-white text-sm">¿Cuánto tiempo tarda en llegar mi pedido?</h3>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-accentOrange transition-transform duration-300"></i>
+                    </div>
+                    <p class="text-zinc-400 mt-3 hidden leading-relaxed">
+                        Los pedidos procesados antes de las 14:00 horas se despachan el mismo día. El tiempo promedio de entrega es de 24 a 72 horas hábiles según la ciudad de destino.
+                    </p>
+                </div>
+                <div class="border border-white/10 bg-slateDark p-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold text-white text-sm">¿Qué métodos de pago aceptan?</h3>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-accentOrange transition-transform duration-300"></i>
+                    </div>
+                    <p class="text-zinc-400 mt-3 hidden leading-relaxed">
+                        Aceptamos tarjetas de crédito y débito (Visa, Mastercard, American Express), PayPal, Zelle, Transferencia bancaria directa y pago contra entrega en ciudades seleccionadas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-slateDark py-12 font-mono text-xs relative z-40">
+        <div class="max-w-[1700px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-3">
+                <span class="font-syne font-black text-xl text-white">TITAN & CO.</span>
+                <p class="text-zinc-400 text-[11px] leading-relaxed">
+                    Especialistas en distribución de calzado técnico, táctico y urbano de alto rendimiento con garantía internacional.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase mb-3 text-accentOrange">Categorías</h4>
+                <ul class="space-y-2 text-zinc-400">
+                    <li><a href="#catalogo" onclick="filterCatalog('tactica')" class="hover:text-white">Botas Tácticas Militar</a></li>
+                    <li><a href="#catalogo" onclick="filterCatalog('outdoor')" class="hover:text-white">Senderismo y Montaña</a></li>
+                    <li><a href="#catalogo" onclick="filterCatalog('cuero')" class="hover:text-white">Cuero Artesanal</a></li>
+                    <li><a href="#catalogo" onclick="filterCatalog('urbana')" class="hover:text-white">Estilo Urbano Todoterreno</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase mb-3 text-accentOrange">Atención al Cliente</h4>
+                <ul class="space-y-2 text-zinc-400">
+                    <li><a href="javascript:openSizeGuide()" class="hover:text-white">Guía de Tallas (CM)</a></li>
+                    <li><a href="#faq" class="hover:text-white">Envíos y Devoluciones</a></li>
+                    <li><a href="#faq" class="hover:text-white">Términos de Garantía</a></li>
+                    <li><a href="#faq" class="hover:text-white">Soporte Técnico</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase mb-3 text-accentOrange">Suscripción VIP</h4>
+                <p class="text-zinc-400 text-[11px] mb-3">Recibe un 10% de descuento en tu primer par e invitaciones a lanzamientos limitados.</p>
+                <form onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte a TITAN & CO! Hemos enviado tu cupón del 10% de descuento a tu correo.');" class="flex gap-2">
+                    <input type="email" placeholder="tu@email.com" required class="bg-black border border-white/20 text-white px-3 py-2 text-xs w-full focus:border-accentOrange outline-none">
+                    <button type="submit" class="bg-accentOrange hover:bg-orange-500 text-black px-4 py-2 font-bold uppercase">Unirme</button>
+                </form>
+            </div>
+        </div>
+        <div class="max-w-[1700px] mx-auto px-6 border-t border-white/10 mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center text-zinc-500 text-[10px]">
+            <span>© 2026 TITAN & CO. KINETIC FORGE. TODOS LOS DERECHOS RESERVADOS.</span>
+            <div class="flex gap-4 mt-2 sm:mt-0">
+                <span>POLÍTICA DE PRIVACIDAD</span>
+                <span>TÉRMINOS DE SERVICIO</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SLIDE-OVER CARRITO DE COMPRAS -->
+    <div id="cart-drawer" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div id="cart-panel" class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-slateDark border-l border-white/10 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300">
+            <div>
+                <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="shopping-bag" class="w-5 h-5 text-accentOrange"></i>
+                        <h3 class="font-syne font-bold text-lg text-white">TU CARRITO DE COMPRAS</h3>
+                    </div>
+                    <button onclick="toggleCart()" class="text-zinc-400 hover:text-white p-1">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                <div id="cart-items-list" class="mt-6 space-y-4 max-h-[60vh] overflow-y-auto pr-1"></div>
+            </div>
+
+            <div class="border-t border-white/10 pt-4 space-y-4">
+                <div class="flex justify-between items-center font-mono text-sm">
+                    <span class="text-zinc-400">SUBTOTAL ESTIMADO:</span>
+                    <span id="cart-subtotal" class="font-bold text-white text-lg">$0.00 USD</span>
+                </div>
+                <button onclick="openCheckoutModal()" class="w-full py-4 bg-accentOrange hover:bg-orange-500 text-black font-mono font-bold text-xs uppercase transition-colors flex items-center justify-center gap-2">
+                    <span>Proceder al Pago Seguro</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CALCULADORA DE TALLA -->
+    <div id="size-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-slateDark border border-white/20 max-w-md w-full p-6 space-y-6 relative">
+            <button onclick="closeSizeGuide()" class="absolute top-4 right-4 text-zinc-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div>
+                <span class="text-accentOrange font-mono text-xs font-bold uppercase">HERRAMIENTA DE PRECISIÓN</span>
+                <h3 class="font-syne font-bold text-2xl text-white mt-1">CALCULADORA DE TALLA</h3>
+                <p class="font-mono text-xs text-zinc-400 mt-1">Coloca tu talón contra una pared y mide la distancia exacta en centímetros hasta la punta del dedo pulgar.</p>
+            </div>
+            <div class="space-y-3 font-mono text-xs">
+                <label class="block text-zinc-300">Medida de tu pie en CM:</label>
+                <div class="flex gap-2">
+                    <input type="number" id="foot-cm-input" min="20" max="35" step="0.5" placeholder="Ej. 27.5" class="bg-black border border-white/20 text-white px-4 py-3 w-full font-bold focus:border-accentOrange outline-none">
+                    <button onclick="calculateModalSize()" class="bg-accentOrange text-black font-bold px-6 py-3 uppercase">Calcular</button>
+                </div>
+            </div>
+            <div id="size-result-box" class="hidden p-4 border border-accentOrange bg-accentOrange/10 text-center font-mono space-y-1">
+                <span class="text-zinc-400 text-xs block uppercase">TU TALLA SUGERIDA ES:</span>
+                <span id="size-recommended" class="font-syne font-black text-3xl text-white block">US 10.0</span>
+                <span class="text-accentOrange text-xs font-bold">EQUIVALENTE A EU <span id="size-eu">43</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL VISTA RÁPIDA (QUICK VIEW) CON CAMPOS ESPECÍFICOS DE SUELA Y MEMBRANA -->
+    <div id="quickview-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-slateDark border border-white/20 max-w-2xl w-full p-6 space-y-6 relative">
+            <button onclick="closeQuickView()" class="absolute top-4 right-4 text-zinc-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div class="grid md:grid-cols-2 gap-6 items-center">
+                <div class="aspect-square bg-slateBg p-4 border border-white/10 flex items-center justify-center">
+                    <img id="qv-img" src="" class="w-full h-full object-contain">
+                </div>
+                <div class="space-y-4 font-mono">
+                    <span id="qv-brand" class="text-xs text-accentOrange font-bold uppercase block"></span>
+                    <h3 id="qv-title" class="font-syne font-extrabold text-2xl text-white uppercase leading-tight"></h3>
+                    <p id="qv-desc" class="text-xs text-zinc-400 leading-relaxed"></p>
+                    
+                    <!-- Especificaciones técnicas inyectadas por cada bota -->
+                    <div class="grid grid-cols-1 gap-2 bg-black/40 p-3 border border-white/10 text-[11px]">
+                        <div>
+                            <span class="text-accentOrange font-bold uppercase">Suela: </span>
+                            <span id="qv-suela" class="text-zinc-300"></span>
+                        </div>
+                        <div>
+                            <span class="text-accentCyan font-bold uppercase">Membrana / Material: </span>
+                            <span id="qv-membrana" class="text-zinc-300"></span>
+                        </div>
+                    </div>
+
+                    <div class="pt-1">
+                        <label class="block text-xs text-zinc-400 mb-1">Selecciona Talla (EU):</label>
+                        <select id="qv-size-select" class="bg-black border border-white/20 text-white p-2.5 text-xs w-full outline-none focus:border-accentOrange">
+                            <option value="39">EU 39 (US 6.5)</option>
+                            <option value="40">EU 40 (US 7.5)</option>
+                            <option value="41" selected>EU 41 (US 8.5)</option>
+                            <option value="42">EU 42 (US 9.0)</option>
+                            <option value="43">EU 43 (US 10.0)</option>
+                            <option value="44">EU 44 (US 11.0)</option>
+                            <option value="45">EU 45 (US 12.0)</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-white/10">
+                        <span id="qv-price" class="font-syne font-extrabold text-2xl text-white"></span>
+                        <button id="qv-add-btn" class="bg-accentOrange hover:bg-orange-500 text-black px-6 py-3 text-xs font-bold uppercase transition-colors">
+                            Añadir al Carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CHECKOUT -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-slateDark border border-white/20 max-w-md w-full p-6 space-y-6 relative">
+            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div>
+                <span class="text-emerald-400 font-mono text-xs font-bold uppercase">PROCESO SEGURO</span>
+                <h3 class="font-syne font-bold text-2xl text-white mt-1">CONFIRMAR PEDIDO</h3>
+            </div>
+            <form onsubmit="confirmOrder(event)" class="space-y-4 font-mono text-xs">
+                <input type="text" required placeholder="Nombre Completo" class="bg-black border border-white/20 text-white p-3 w-full outline-none">
+                <input type="email" required placeholder="Correo Electrónico" class="bg-black border border-white/20 text-white p-3 w-full outline-none">
+                <button type="submit" class="w-full py-4 bg-emerald-500 text-black font-bold uppercase text-xs">Pagar Pedido</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- CARGA DE MÓDULOS JAVASCRIPT -->
+    <script src="js/database.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
